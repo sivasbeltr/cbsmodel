@@ -10,9 +10,7 @@ class Il(models.Model):
     Model representing a province in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     ad = models.CharField(
         _("İl Adı"), max_length=50, unique=True, help_text=_("İl adı giriniz.")
     )
@@ -43,6 +41,22 @@ class Il(models.Model):
         default=0,
     )
 
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("İl ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -57,7 +71,7 @@ class Il(models.Model):
         verbose_name = _("İl")
         verbose_name_plural = _("İller")
         ordering = ["ad"]
-        db_table = "iller"
+        db_table = '"ortak"."iller"'
 
 
 class Ilce(models.Model):
@@ -65,9 +79,7 @@ class Ilce(models.Model):
     Model representing a district in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     ad = models.CharField(
         _("İlçe Adı"), max_length=50, help_text=_("İlçe adı giriniz.")
     )
@@ -99,6 +111,22 @@ class Ilce(models.Model):
         default=0,
     )
 
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("İlçe ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -113,7 +141,7 @@ class Ilce(models.Model):
         verbose_name = _("İlçe")
         verbose_name_plural = _("İlçeler")
         ordering = ["il__ad", "ad"]
-        db_table = "ilceler"
+        db_table = '"ortak"."ilceler"'
 
 
 class Mahalle(models.Model):
@@ -121,9 +149,7 @@ class Mahalle(models.Model):
     Model representing a neighborhood in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     ad = models.CharField(
         _("Mahalle Adı"), max_length=50, help_text=_("Mahalle adı giriniz.")
     )
@@ -188,6 +214,20 @@ class Mahalle(models.Model):
         default=0,
     )
 
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Mahalle ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -202,7 +242,7 @@ class Mahalle(models.Model):
         verbose_name = _("Mahalle")
         verbose_name_plural = _("Mahalleler")
         ordering = ["ilce__il__ad", "ilce__ad", "ad"]
-        db_table = "mahalleler"
+        db_table = '"ortak"."mahalleler"'
 
 
 class Ada(models.Model):
@@ -210,9 +250,7 @@ class Ada(models.Model):
     Model representing a parcel in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     pafta_no = models.CharField(
         _("Pafta No"),
         max_length=50,
@@ -251,6 +289,20 @@ class Ada(models.Model):
         default=0,
     )
 
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Ada ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -260,3 +312,14 @@ class Ada(models.Model):
 
     def __str__(self):
         return f"{self.mahalle.ilce.il.ad} - {self.mahalle.ilce.ad} - {self.mahalle.ad} - {self.ad}"
+
+    class Meta:
+        verbose_name = _("Ada")
+        verbose_name_plural = _("Adalar")
+        ordering = [
+            "mahalle__ilce__il__ad",
+            "mahalle__ilce__ad",
+            "mahalle__ad",
+            "ada_no",
+        ]
+        db_table = '"ortak"."adalar"'

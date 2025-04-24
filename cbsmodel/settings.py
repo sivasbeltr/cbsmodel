@@ -37,17 +37,17 @@ INTERNAL_IPS = os.environ.get("INTERNAL_IPS", "").split(",")
 # Application definition
 
 INSTALLED_APPS = [
-    # "admin_interface",
-    # "colorfield",
-    # "django.contrib.admin",
-    # "django.contrib.auth",
+    "admin_interface",
+    "colorfield",
+    "django.contrib.admin",
+    "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
-    # "rest_framework",
-    # "rest_framework_gis",
+    "rest_framework",
+    "rest_framework_gis",
     "ortak.apps.OrtakConfig",
     "parkbahce.apps.ParkbahceConfig",
     "bilgiislem.apps.BilgiislemConfig",
@@ -130,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "tr"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Istanbul"
 
 USE_I18N = True
 

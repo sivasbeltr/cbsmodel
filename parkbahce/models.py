@@ -394,9 +394,7 @@ class Park(models.Model):
     Model representing a park in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     ad = models.CharField(
         _("Park Adı"), max_length=50, unique=True, help_text=_("Park adı giriniz.")
     )
@@ -498,6 +496,22 @@ class Park(models.Model):
         default=0,
     )
 
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Park ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -522,9 +536,7 @@ class ParkAbone(models.Model):
     Model representing a park subscription in Turkey. Su Elektrik Doğalgaz vs.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -554,6 +566,22 @@ class ParkAbone(models.Model):
         srid=settings.SRID,
         help_text=_("Abone noktasını belirten geometri alanı."),
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Abone ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -618,9 +646,7 @@ class YesilAlan(models.Model):
     Model representing a green area in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -647,6 +673,22 @@ class YesilAlan(models.Model):
         null=True,
         default=0,
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Yeşil alan ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -669,9 +711,7 @@ class SporAlan(models.Model):
     Model representing a sports area in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -716,6 +756,21 @@ class SporAlan(models.Model):
         null=True,
         default=0,
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Spor alanı ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -738,9 +793,7 @@ class OyunAlan(models.Model):
     Model representing a playground in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -776,6 +829,23 @@ class OyunAlan(models.Model):
         null=True,
         default=0,
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Oyun alanı ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -798,9 +868,7 @@ class ParkBina(models.Model):
     Model representing a building in a park in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     ad = models.CharField(
         _("Bina Adı"),
         max_length=50,
@@ -842,6 +910,22 @@ class ParkBina(models.Model):
         default=0,
     )
 
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Bina ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -864,9 +948,7 @@ class ParkDonati(models.Model):
     Model representing a park furniture in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -888,6 +970,23 @@ class ParkDonati(models.Model):
         srid=settings.SRID,
         help_text=_("Donatı noktasını belirten geometri alanı."),
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Donatı ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -910,9 +1009,7 @@ class ParkOyunGrup(models.Model):
     Model representing a playground group in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -947,6 +1044,23 @@ class ParkOyunGrup(models.Model):
         srid=settings.SRID,
         help_text=_("Oyun grubu noktasını belirten geometri alanı."),
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Oyun grubu ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -969,9 +1083,7 @@ class SulamaHat(models.Model):
     Model representing an irrigation line in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1008,6 +1120,23 @@ class SulamaHat(models.Model):
         null=True,
         default=0,
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Sulama hattı ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -1030,9 +1159,7 @@ class SulamaNokta(models.Model):
     Model representing an irrigation point in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1054,6 +1181,25 @@ class SulamaNokta(models.Model):
         srid=settings.SRID,
         help_text=_("Sulama noktasını belirten geometri alanı."),
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_(
+            "Sulama noktası ile ilgili ekstra verileri JSON formatında giriniz."
+        ),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -1076,9 +1222,7 @@ class KanalHat(models.Model):
     Model representing a canal line in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1114,6 +1258,23 @@ class KanalHat(models.Model):
         null=True,
         default=0,
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Kanal hattı ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -1136,9 +1297,7 @@ class ElektrikHat(models.Model):
     Model representing an electricity line in Turkey.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1190,6 +1349,24 @@ class ElektrikHat(models.Model):
         null=True,
         default=0,
     )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_(
+            "Elektrik hattı ile ilgili ekstra verileri JSON formatında giriniz."
+        ),
+        blank=True,
+        null=True,
+    )
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
     )
@@ -1212,9 +1389,7 @@ class Habitat(models.Model):
     Model representing a habitat in Sivas.
     """
 
-    uuid = models.UUIDField(
-        default=uuid.uuid4, primary_key=True, editable=False, unique=True
-    )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1258,6 +1433,22 @@ class Habitat(models.Model):
         _("Geometri"),
         srid=settings.SRID,
         help_text=_("Habitat noktasını belirten geometri alanı."),
+    )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Habitat ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
     )
 
     created_at = models.DateTimeField(
