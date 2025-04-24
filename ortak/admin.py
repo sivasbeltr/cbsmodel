@@ -56,7 +56,15 @@ class IlceAdmin(admin.GISModelAdmin):
 
 @admin.register(Mahalle)
 class MahalleAdmin(admin.GISModelAdmin):
-    list_display = ("ad", "ilce", "nufus", "muhtar")
+    list_display = (
+        "ad",
+        "ilce",
+        "nufus",
+        "muhtar",
+        "muhtar_telefon",
+        "alan",
+        "cevre",
+    )
     search_fields = ("ad", "ilce__ad", "ilce__il__ad")
     list_filter = ("ilce__il", "ilce")
     readonly_fields = ("uuid", "created_at", "updated_at")
