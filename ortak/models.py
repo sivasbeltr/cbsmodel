@@ -10,7 +10,9 @@ class Il(models.Model):
     Model representing a province in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     ad = models.CharField(
         _("İl Adı"), max_length=50, unique=True, help_text=_("İl adı giriniz.")
     )
@@ -79,7 +81,9 @@ class Ilce(models.Model):
     Model representing a district in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     ad = models.CharField(
         _("İlçe Adı"), max_length=50, help_text=_("İlçe adı giriniz.")
     )
@@ -149,7 +153,9 @@ class Mahalle(models.Model):
     Model representing a neighborhood in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     ad = models.CharField(
         _("Mahalle Adı"), max_length=50, help_text=_("Mahalle adı giriniz.")
     )
@@ -250,7 +256,9 @@ class Ada(models.Model):
     Model representing a parcel in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     pafta_no = models.CharField(
         _("Pafta No"),
         max_length=50,

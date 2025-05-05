@@ -148,3 +148,8 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SRID = 5256
+
+# Default Map Center Coordinates
+DEFAULT_MAP_LATITUDE = 39.7480
+DEFAULT_MAP_LONGITUDE = 37.0145
+DEFAULT_MAP_ZOOM = 13

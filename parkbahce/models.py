@@ -221,6 +221,34 @@ class OyunGrupTip(models.Model):
         db_table = '"parkbahce"."oyun_grubu_tipleri"'
 
 
+class OyunGrupModel(models.Model):
+    """
+    Model representing a playground group model in Turkey.
+    """
+
+    ad = models.CharField(
+        _("Oyun Grubu Modeli"),
+        max_length=50,
+        unique=True,
+        help_text=_("Oyun grubu modeli giriniz."),
+    )
+    aciklama = models.TextField(
+        _("Açıklama"),
+        help_text=_("Oyun grubu modeli hakkında açıklama giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        return self.ad
+
+    class Meta:
+        verbose_name = _("Oyun Grubu Modeli")
+        verbose_name_plural = _("Oyun Grubu Modelleri")
+        ordering = ["ad"]
+        db_table = '"parkbahce"."oyun_grubu_modelleri"'
+
+
 class SulamaBoruTip(models.Model):
     """
     Model representing a pipe type in Turkey.
@@ -389,14 +417,100 @@ class HabitatTip(models.Model):
         db_table = '"parkbahce"."habitat_tipleri"'
 
 
+class ElektrikNoktaTip(models.Model):
+    """
+    Model representing a point type in Turkey.
+    """
+
+    ad = models.CharField(
+        _("Elektrik Noktası Tipi"),
+        max_length=50,
+        unique=True,
+        help_text=_("Elektrik noktası tipi giriniz."),
+    )
+    aciklama = models.TextField(
+        _("Açıklama"),
+        help_text=_("Elektrik noktası tipi hakkında açıklama giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        return self.ad
+
+    class Meta:
+        verbose_name = _("Elektrik Noktası Tipi")
+        verbose_name_plural = _("Elektrik Noktası Tipleri")
+        ordering = ["ad"]
+        db_table = '"parkbahce"."elektrik_noktasi_tipleri"'
+
+
+class ElektrikBaglantiTip(models.Model):
+    """
+    Model representing a connection type in Turkey.
+    """
+
+    ad = models.CharField(
+        _("Elektrik Bağlantı Tipi"),
+        max_length=50,
+        unique=True,
+        help_text=_("Elektrik bağlantı tipi giriniz."),
+    )
+    aciklama = models.TextField(
+        _("Açıklama"),
+        help_text=_("Elektrik bağlantı tipi hakkında açıklama giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        return self.ad
+
+    class Meta:
+        verbose_name = _("Elektrik Bağlantı Tipi")
+        verbose_name_plural = _("Elektrik Bağlantı Tipleri")
+        ordering = ["ad"]
+        db_table = '"parkbahce"."elektrik_baglanti_tipleri"'
+
+
+class SporAletiGrup(models.Model):
+    """
+    Model representing a sports equipment group in Turkey.
+    """
+
+    ad = models.CharField(
+        _("Spor Aleti Grubu"),
+        max_length=50,
+        unique=True,
+        help_text=_("Spor aleti grubunu giriniz."),
+    )
+    aciklama = models.TextField(
+        _("Açıklama"),
+        help_text=_("Spor aleti grubu hakkında açıklama giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        return self.ad
+
+    class Meta:
+        verbose_name = _("Spor Aleti Grubu")
+        verbose_name_plural = _("Spor Aleti Grupları")
+        ordering = ["ad"]
+        db_table = '"parkbahce"."spor_aleti_gruplari"'
+
+
 class Park(models.Model):
     """
     Model representing a park in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     ad = models.CharField(
-        _("Park Adı"), max_length=50, unique=True, help_text=_("Park adı giriniz.")
+        _("Park Adı"), max_length=50, help_text=_("Park adı giriniz.")
     )
     ada = models.ForeignKey(
         Ada,
@@ -536,7 +650,9 @@ class ParkAbone(models.Model):
     Model representing a park subscription in Turkey. Su Elektrik Doğalgaz vs.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -646,7 +762,9 @@ class YesilAlan(models.Model):
     Model representing a green area in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -711,7 +829,9 @@ class SporAlan(models.Model):
     Model representing a sports area in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -728,6 +848,16 @@ class SporAlan(models.Model):
         blank=True,
         null=True,
     )
+    spor_aleti_grup = models.ForeignKey(
+        SporAletiGrup,
+        on_delete=models.SET_NULL,
+        related_name="spor_alanlar",
+        verbose_name=_("Spor Aleti Grubu"),
+        help_text=_("Spor aleti grubunu seçiniz."),
+        blank=True,
+        null=True,
+    )
+
     spor_alan_kaplama_tipi = models.ForeignKey(
         KaplamaTip,
         on_delete=models.SET_NULL,
@@ -793,7 +923,9 @@ class OyunAlan(models.Model):
     Model representing a playground in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -810,6 +942,7 @@ class OyunAlan(models.Model):
         blank=True,
         null=True,
     )
+
     geom = models.MultiPolygonField(
         _("Geometri"),
         srid=settings.SRID,
@@ -868,7 +1001,9 @@ class ParkBina(models.Model):
     Model representing a building in a park in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     ad = models.CharField(
         _("Bina Adı"),
         max_length=50,
@@ -948,7 +1083,9 @@ class ParkDonati(models.Model):
     Model representing a park furniture in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1009,7 +1146,9 @@ class ParkOyunGrup(models.Model):
     Model representing a playground group in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1023,6 +1162,16 @@ class ParkOyunGrup(models.Model):
         related_name="oyun_gruplari",
         verbose_name=_("Oyun Grubu Tipi"),
         help_text=_("Oyun grubu tipi seçiniz."),
+        blank=True,
+        null=True,
+    )
+
+    oyun_grup_model = models.ForeignKey(
+        OyunGrupModel,
+        on_delete=models.SET_NULL,
+        related_name="oyun_alanlar",
+        verbose_name=_("Oyun Grubu Modeli"),
+        help_text=_("Oyun grubu modeli seçiniz."),
         blank=True,
         null=True,
     )
@@ -1083,7 +1232,9 @@ class SulamaHat(models.Model):
     Model representing an irrigation line in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1159,7 +1310,9 @@ class SulamaNokta(models.Model):
     Model representing an irrigation point in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1222,7 +1375,9 @@ class KanalHat(models.Model):
     Model representing a canal line in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1297,7 +1452,9 @@ class ElektrikHat(models.Model):
     Model representing an electricity line in Turkey.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1389,7 +1546,9 @@ class Habitat(models.Model):
     Model representing a habitat in Sivas.
     """
 
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
     park = models.ForeignKey(
         Park,
         on_delete=models.CASCADE,
@@ -1466,3 +1625,87 @@ class Habitat(models.Model):
         verbose_name = _("Habitat")
         verbose_name_plural = _("Habitatlar")
         db_table = '"parkbahce"."habitatlar"'
+
+
+class ElektrikNokta(models.Model):
+    """
+    Model representing an electricity point in Turkey.
+    """
+
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
+    park = models.ForeignKey(
+        Park,
+        on_delete=models.CASCADE,
+        related_name="elektrik_noktalar",
+        verbose_name=_("Park"),
+        help_text=_("Elektrik noktasının bulunduğu park."),
+    )
+    elektrik_nokta_tipi = models.ForeignKey(
+        ElektrikNoktaTip,
+        on_delete=models.SET_NULL,
+        related_name="elektrik_noktalar",
+        verbose_name=_("Elektrik Noktası Tipi"),
+        help_text=_("Elektrik noktası tipi seçiniz."),
+        blank=True,
+        null=True,
+    )
+
+    elektrik_baglanti_tipi = models.ForeignKey(
+        ElektrikBaglantiTip,
+        on_delete=models.SET_NULL,
+        related_name="elektrik_noktalar",
+        verbose_name=_("Elektrik Bağlantı Tipi"),
+        help_text=_("Elektrik bağlantı tipi seçiniz."),
+        blank=True,
+        null=True,
+    )
+
+    sayi = models.IntegerField(
+        _("Elektrik Noktası Sayısı"),
+        help_text=_("Elektrik noktasının sayısını giriniz."),
+        blank=True,
+        null=True,
+        default=1,
+    )
+
+    geom = models.PointField(
+        _("Geometri"),
+        srid=settings.SRID,
+        help_text=_("Elektrik noktasını belirten geometri alanı."),
+    )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_(
+            "Elektrik noktası ile ilgili ekstra verileri JSON formatında giriniz."
+        ),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name=_("Güncellenme Tarihi"), blank=True, null=True
+    )
+
+    def __str__(self):
+        return f"{self.park.ad} - ({self.elektrik_nokta_tipi.ad})"
+
+    class Meta:
+        verbose_name = _("Elektrik Noktası")
+        verbose_name_plural = _("Elektrik Noktaları")
+        db_table = '"parkbahce"."elektrik_noktalar"'
