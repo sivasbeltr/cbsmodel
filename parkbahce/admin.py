@@ -25,8 +25,10 @@ from .models import (  # Add other models if needed; Tip models
     ParkBina,
     ParkBinaKullanimTip,
     ParkDonati,
+    ParkHavuz,
     ParkOyunGrup,
     ParkTip,
+    ParkYol,
     SporAlan,
     SporAlanTip,
     SporAletiGrup,
@@ -186,7 +188,10 @@ class ParkAdmin(admin.GISModelAdmin):
         ),
         (_("Sulama Bilgileri"), {"fields": ("sulama_tipi", "sulama_kaynagi")}),
         (_("Geometri ve Alan"), {"fields": ("geom", "alan", "cevre")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -210,7 +215,10 @@ class ParkAboneAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("park", "abone_tipi", "abone_no", "abone_tarihi", "geom")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -243,7 +251,10 @@ class YesilAlanAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("park", "geom", "alan", "cevre")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -279,7 +290,10 @@ class SporAlanAdmin(admin.GISModelAdmin):
                 )
             },
         ),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -303,7 +317,10 @@ class OyunAlanAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("park", "oyun_alan_kaplama_tipi", "geom", "alan", "cevre")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -330,7 +347,10 @@ class ParkBinaAdmin(admin.GISModelAdmin):
             None,
             {"fields": ("ad", "park", "bina_kullanim_tipi", "geom", "alan", "cevre")},
         ),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -354,7 +374,10 @@ class ParkDonatiAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("park", "donati_tipi", "geom")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -378,7 +401,10 @@ class ParkOyunGrupAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("ad", "park", "oyun_grup_tipi", "sayi", "geom")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -402,7 +428,10 @@ class SulamaHatAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("park", "sulama_boru_tipi", "boru_cap", "geom", "uzunluk")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -426,7 +455,10 @@ class SulamaNoktaAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("park", "sulama_nokta_tipi", "geom")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -450,7 +482,10 @@ class KanalHatAdmin(admin.GISModelAdmin):
     }
     fieldsets = (
         (None, {"fields": ("park", "kanal_boru_tipi", "boru_cap", "geom", "uzunluk")}),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -487,7 +522,10 @@ class ElektrikHatAdmin(admin.GISModelAdmin):
                 )
             },
         ),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -514,7 +552,10 @@ class HabitatAdmin(admin.GISModelAdmin):
             None,
             {"fields": ("ad", "park", "habitat_tipi", "dikim_tarihi", "firma", "geom")},
         ),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
@@ -548,7 +589,64 @@ class ElektrikNoktaAdmin(admin.GISModelAdmin):
                 )
             },
         ),
-        (_("Ekstra Veri ve Meta"), {"fields": ("extra_data", "osm_id")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
+        (
+            _("Tarihçe"),
+            {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
+        ),
+    )
+
+
+@admin.register(ParkHavuz)
+class ParkHavuzAdmin(admin.GISModelAdmin):
+    list_display = ("park", "alan", "cevre")
+    search_fields = ("park__ad",)
+    list_filter = ("park__mahalle",)
+    readonly_fields = ("uuid", "created_at", "updated_at", "alan", "cevre")
+    raw_id_fields = ("park",)
+    gis_widget_kwargs = {
+        "attrs": {
+            "default_zoom": settings.DEFAULT_MAP_ZOOM,
+            "default_lat": settings.DEFAULT_MAP_LATITUDE,
+            "default_lon": settings.DEFAULT_MAP_LONGITUDE,
+        },
+    }
+    fieldsets = (
+        (None, {"fields": ("park", "geom", "alan", "cevre")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
+        (
+            _("Tarihçe"),
+            {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},
+        ),
+    )
+
+
+@admin.register(ParkYol)
+class ParkYolAdmin(admin.GISModelAdmin):
+    list_display = ("park", "yol_tipi", "alan")
+    search_fields = ("park__ad", "yol_tipi")
+    list_filter = ("park__mahalle", "yol_tipi")
+    readonly_fields = ("uuid", "created_at", "updated_at", "alan")
+    raw_id_fields = ("park",)
+    gis_widget_kwargs = {
+        "attrs": {
+            "default_zoom": settings.DEFAULT_MAP_ZOOM,
+            "default_lat": settings.DEFAULT_MAP_LATITUDE,
+            "default_lon": settings.DEFAULT_MAP_LONGITUDE,
+        },
+    }
+    fieldsets = (
+        (None, {"fields": ("park", "yol_tipi", "geom", "alan")}),
+        (
+            _("Ekstra Veri ve Meta"),
+            {"fields": ("extra_data", "osm_id"), "classes": ("collapse",)},
+        ),
         (
             _("Tarihçe"),
             {"fields": ("uuid", "created_at", "updated_at"), "classes": ("collapse",)},

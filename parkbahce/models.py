@@ -1541,6 +1541,77 @@ class ElektrikHat(models.Model):
         db_table = '"parkbahce"."elektrik_hatlari"'
 
 
+class ParkHavuz(models.Model):
+    """
+
+    Model representing a pool in a park in Turkey.
+    """
+
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
+    park = models.ForeignKey(
+        Park,
+        on_delete=models.CASCADE,
+        related_name="havuzlar",
+        verbose_name=_("Park"),
+        help_text=_("Havuzun bulunduğu park."),
+    )
+    geom = models.MultiPolygonField(
+        _("Geometri"),
+        srid=settings.SRID,
+        help_text=_("Havuz sınırlarını belirten geometri alanı."),
+    )
+
+    alan = models.FloatField(
+        _("Alan"),
+        help_text=_("Havuz alanını giriniz."),
+        blank=True,
+        null=True,
+        default=0,
+    )
+
+    cevre = models.FloatField(
+        _("Çevre"),
+        help_text=_("Havuz çevresini giriniz."),
+        blank=True,
+        null=True,
+        default=0,
+    )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Havuz ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name=_("Güncellenme Tarihi"), blank=True, null=True
+    )
+
+    def __str__(self):
+        return f"{self.park.ad} - ({self.alan})"
+
+    class Meta:
+        verbose_name = _("Havuz")
+        verbose_name_plural = _("Havuzlar")
+        db_table = '"parkbahce"."havuzlar"'
+
+
 class Habitat(models.Model):
     """
     Model representing a habitat in Sivas.
@@ -1709,3 +1780,71 @@ class ElektrikNokta(models.Model):
         verbose_name = _("Elektrik Noktası")
         verbose_name_plural = _("Elektrik Noktaları")
         db_table = '"parkbahce"."elektrik_noktalar"'
+
+
+class ParkYol(models.Model):
+    """
+    Model representing a road in a park in Turkey.
+    """
+
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, unique=True, blank=True, null=True
+    )
+    park = models.ForeignKey(
+        Park,
+        on_delete=models.CASCADE,
+        related_name="yollar",
+        verbose_name=_("Park"),
+        help_text=_("Yolun bulunduğu park."),
+    )
+    yol_tipi = models.CharField(
+        _("Yol Tipi"),
+        max_length=50,
+        help_text=_("Yol tipini giriniz."),
+        blank=True,
+        null=True,
+    )
+    geom = models.MultiPolygonField(
+        _("Geometri"),
+        srid=settings.SRID,
+        help_text=_("Yol sınırlarını belirten geometri alanı."),
+    )
+
+    alan = models.FloatField(
+        _("Alan"),
+        help_text=_("Yol alanını giriniz."),
+        blank=True,
+        null=True,
+        default=0,
+    )
+
+    extra_data = models.JSONField(
+        _("Ekstra Veri"),
+        help_text=_("Yol ile ilgili ekstra verileri JSON formatında giriniz."),
+        blank=True,
+        null=True,
+    )
+
+    osm_id = models.CharField(
+        _("OSM ID"),
+        max_length=50,
+        unique=True,
+        help_text=_("OpenStreetMap'den alınan benzersiz kimlik."),
+        blank=True,
+        null=True,
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=_("Oluşturulma Tarihi"), blank=True, null=True
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name=_("Güncellenme Tarihi"), blank=True, null=True
+    )
+
+    def __str__(self):
+        return f"{self.park.ad} - ({self.yol_tipi})"
+
+    class Meta:
+        verbose_name = _("Yol")
+        verbose_name_plural = _("Yollar")
+        db_table = '"parkbahce"."yollar"'
