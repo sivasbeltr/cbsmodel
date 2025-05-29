@@ -1,0 +1,59 @@
+{
+    // çok uzun html satırları alta kaydırılmasın
+    "html.format.wrapLineLength": 0,
+    // Django template syntax'ı korunması için
+    "html.format.enable": false,
+    "javascript.format.enable": false,
+    "typescript.format.enable": false,
+    // Django template dosyalarında auto format kapatılsın
+    "[html]": {
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false,
+        "editor.formatOnType": false
+    },
+    // JavaScript içinde Django template syntax korunması
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false
+    },
+    // Template literal'leri koruma
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "meta.template.expression",
+                "settings": {
+                    "foreground": "#569cd6"
+                }
+            }
+        ]
+    },
+    // Django template file association
+    "files.associations": {
+        "*.html": "django-html"
+    },
+    // Bracket pair colorization
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    // JavaScript formatter'ları tamamen kapat
+    "prettier.enable": false,
+    "editor.defaultFormatter": null,
+    // Django template syntax içeren script tagları için özel ayarlar
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    // Auto closing brackets'ı kapat (Django template syntax ile çakışmasın)
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    // Code lens'ı kapat
+    "editor.codeLens": false,
+    // Quick suggestions'ı kapat (Django template syntax bozulmasın)
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false
+    },
+    // Parameter hints'i kapat
+    "editor.parameterHints.enabled": false,
+    // Suggest on trigger characters'ı kapat
+    "editor.suggestOnTriggerCharacters": false
+}
