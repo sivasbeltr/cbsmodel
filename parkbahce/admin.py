@@ -46,110 +46,128 @@ from .models import (  # Add other models if needed; Tip models
 
 @admin.register(OyunGrupModel)
 class OyunGrupModelAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(SporAletiGrup)
 class SporAletiGrupAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(SulamaTip)
 class SulamaTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(SulamaKaynak)
 class SulamaKaynakAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(ParkTip)
 class ParkTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(KaplamaTip)
 class KaplamaTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(SporAlanTip)
 class SporAlanTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(ParkBinaKullanimTip)
 class ParkBinaKullanimTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(DonatiTip)
 class DonatiTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(OyunGrupTip)
 class OyunGrupTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
-
-
-@admin.register(SulamaBoruTip)
-class SulamaBoruTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
-
-
-@admin.register(SulamaNoktaTip)
-class SulamaNoktaTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
-
-
-@admin.register(KanalBoruTip)
-class KanalBoruTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
-
-
-@admin.register(ElektrikKabloTip)
-class ElektrikKabloTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
-
-
-@admin.register(ElektrikHatTip)
-class ElektrikHatTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
-
-
-@admin.register(HabitatTip)
-class HabitatTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
-
-
-@admin.register(ElektrikNoktaTip)
-class ElektrikNoktaTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(ElektrikBaglantiTip)
 class ElektrikBaglantiTipAdmin(admin.ModelAdmin):
-    list_display = ("ad", "aciklama")
-    search_fields = ("ad",)
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
+
+
+@admin.register(ElektrikHatTip)
+class ElektrikHatTipAdmin(admin.ModelAdmin):
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
+
+
+@admin.register(ElektrikKabloTip)
+class ElektrikKabloTipAdmin(admin.ModelAdmin):
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
+
+
+@admin.register(ElektrikNoktaTip)
+class ElektrikNoktaTipAdmin(admin.ModelAdmin):
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
+
+
+@admin.register(HabitatTip)
+class HabitatTipAdmin(admin.ModelAdmin):
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
+
+
+@admin.register(KanalBoruTip)
+class KanalBoruTipAdmin(admin.ModelAdmin):
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
+
+
+@admin.register(SulamaBoruTip)
+class SulamaBoruTipAdmin(admin.ModelAdmin):
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
+
+
+@admin.register(SulamaNoktaTip)
+class SulamaNoktaTipAdmin(admin.ModelAdmin):
+    list_display = ("ad", "deger", "aciklama")
+    search_fields = ("ad", "deger")
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 # Register main models with GIS support

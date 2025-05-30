@@ -153,3 +153,12 @@ SRID = 5256
 DEFAULT_MAP_LATITUDE = 39.7480
 DEFAULT_MAP_LONGITUDE = 37.0145
 DEFAULT_MAP_ZOOM = 13
+
+# Cache ayarları
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "django_cache_table",
+        "TIMEOUT": 60 * 15,  # 15 dakika
+    }
+}

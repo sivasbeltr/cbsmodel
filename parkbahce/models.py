@@ -23,6 +23,14 @@ class SulamaTip(models.Model):
         unique=True,
         help_text=_("Sulama tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Sulama tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Sulama tipi hakkında açıklama giriniz."),
@@ -48,6 +56,14 @@ class SulamaKaynak(models.Model):
         unique=True,
         help_text=_("Sulama kaynağı giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Sulama kaynağı için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Sulama kaynağı hakkında açıklama giriniz."),
@@ -72,6 +88,15 @@ class ParkTip(models.Model):
         unique=True,
         help_text=_("Park tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Park tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
+
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Park tipi hakkında açıklama giriniz."),
@@ -96,6 +121,14 @@ class KaplamaTip(models.Model):
         unique=True,
         help_text=_("Kaplama tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Kaplama tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Kaplama tipi hakkında açıklama giriniz."),
@@ -119,6 +152,14 @@ class SporAlanTip(models.Model):
         max_length=50,
         unique=True,
         help_text=_("Spor alanı tipi giriniz."),
+    )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Spor alanı tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
     )
     aciklama = models.TextField(
         _("Açıklama"),
@@ -148,6 +189,14 @@ class ParkBinaKullanimTip(models.Model):
         unique=True,
         help_text=_("Bina kullanım tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Bina kullanım tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Bina kullanım tipi hakkında açıklama giriniz."),
@@ -175,6 +224,14 @@ class DonatiTip(models.Model):
         max_length=50,
         unique=True,
         help_text=_("Donatı tipi giriniz."),
+    )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Donatı tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
     )
     aciklama = models.TextField(
         _("Açıklama"),
@@ -204,6 +261,14 @@ class OyunGrupTip(models.Model):
         unique=True,
         help_text=_("Oyun grubu tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Oyun grubu tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Oyun grubu tipi hakkında açıklama giriniz."),
@@ -231,6 +296,14 @@ class OyunGrupModel(models.Model):
         max_length=50,
         unique=True,
         help_text=_("Oyun grubu modeli giriniz."),
+    )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Oyun grubu modeli için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
     )
     aciklama = models.TextField(
         _("Açıklama"),
@@ -260,6 +333,14 @@ class SulamaBoruTip(models.Model):
         unique=True,
         help_text=_("Boru tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Boru tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Boru tipi hakkında açıklama giriniz."),
@@ -287,6 +368,14 @@ class SulamaNoktaTip(models.Model):
         max_length=50,
         unique=True,
         help_text=_("Sulama noktası tipi giriniz."),
+    )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Sulama noktası tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
     )
     aciklama = models.TextField(
         _("Açıklama"),
@@ -316,6 +405,14 @@ class KanalBoruTip(models.Model):
         unique=True,
         help_text=_("Kanalizasyon boru tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Kanalizasyon boru tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Kanalizasyon boru tipi hakkında açıklama giriniz."),
@@ -343,6 +440,14 @@ class ElektrikKabloTip(models.Model):
         max_length=50,
         unique=True,
         help_text=_("Elektrik kablo tipi giriniz."),
+    )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Elektrik kablo tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
     )
     aciklama = models.TextField(
         _("Açıklama"),
@@ -372,6 +477,14 @@ class ElektrikHatTip(models.Model):
         unique=True,
         help_text=_("Elektrik hat tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Elektrik hat tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Elektrik hat tipi hakkında açıklama giriniz."),
@@ -399,6 +512,14 @@ class HabitatTip(models.Model):
         max_length=50,
         unique=True,
         help_text=_("Habitat tipi giriniz."),
+    )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Habitat tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
     )
     aciklama = models.TextField(
         _("Açıklama"),
@@ -428,6 +549,14 @@ class ElektrikNoktaTip(models.Model):
         unique=True,
         help_text=_("Elektrik noktası tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Elektrik noktası tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Elektrik noktası tipi hakkında açıklama giriniz."),
@@ -456,6 +585,14 @@ class ElektrikBaglantiTip(models.Model):
         unique=True,
         help_text=_("Elektrik bağlantı tipi giriniz."),
     )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Elektrik bağlantı tipi için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
+    )
     aciklama = models.TextField(
         _("Açıklama"),
         help_text=_("Elektrik bağlantı tipi hakkında açıklama giriniz."),
@@ -483,6 +620,14 @@ class SporAletiGrup(models.Model):
         max_length=50,
         unique=True,
         help_text=_("Spor aleti grubunu giriniz."),
+    )
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Spor aleti grubu için benzersiz bir değer giriniz."),
+        blank=True,
+        null=True,
     )
     aciklama = models.TextField(
         _("Açıklama"),
