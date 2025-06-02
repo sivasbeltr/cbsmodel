@@ -4,8 +4,8 @@ from django.utils.translation import gettext_lazy as _
 
 from .models import (
     FiberArizaBakim,
+    FiberGuzergahTip,
     FiberHat,
-    FiberHatGuzergahTip,
     FiberKabloTip,
     GuvenlikKamerasi,
     KameraArizaBakim,
@@ -20,12 +20,14 @@ from .models import (
 class FiberKabloTipAdmin(admin.ModelAdmin):
     list_display = ("ad", "aciklama")
     search_fields = ("ad",)
+    prepopulated_fields = {"deger": ("ad",)}
 
 
-@admin.register(FiberHatGuzergahTip)
-class FiberHatGuzergahTipAdmin(admin.ModelAdmin):
+@admin.register(FiberGuzergahTip)
+class FiberGuzergahTipAdmin(admin.ModelAdmin):
     list_display = ("ad", "aciklama")
     search_fields = ("ad",)
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 # Fiber Optik Ana Model
@@ -82,18 +84,21 @@ class FiberHatAdmin(admin.GISModelAdmin):
 class KameraMarkaModelAdmin(admin.ModelAdmin):
     list_display = ("marka", "model", "aciklama")
     search_fields = ("marka", "model")
+    prepopulated_fields = {"deger": ("marka", "model")}
 
 
 @admin.register(KameraTip)
 class KameraTipAdmin(admin.ModelAdmin):
     list_display = ("ad", "aciklama")
     search_fields = ("ad",)
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 @admin.register(KameraCozunurluk)
 class KameraCozunurlukAdmin(admin.ModelAdmin):
     list_display = ("ad", "aciklama")
     search_fields = ("ad",)
+    prepopulated_fields = {"deger": ("ad",)}
 
 
 # Güvenlik Kamerası Ana Model

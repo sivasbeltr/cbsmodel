@@ -19,6 +19,12 @@ class FiberKabloTip(models.Model):
     """
 
     ad = models.CharField(_("Kablo Tipi"), max_length=100, unique=True)
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Sulama tipi için benzersiz bir değer giriniz."),
+    )
     aciklama = models.TextField(_("Açıklama"), blank=True, null=True)
 
     def __str__(self):
@@ -31,7 +37,7 @@ class FiberKabloTip(models.Model):
         db_table = '"bilgiislem"."fiber_kablo_tipleri"'
 
 
-class FiberHatGuzergahTip(models.Model):
+class FiberGuzergahTip(models.Model):
     """
     Teknik Bilgiler:
     - Güzergah Tipi: Yeraltı, Yerüstü, Havai, Boru İçi
@@ -39,6 +45,12 @@ class FiberHatGuzergahTip(models.Model):
     """
 
     ad = models.CharField(_("Güzergah Tipi"), max_length=50, unique=True)
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Güzergah tipi için benzersiz bir değer giriniz."),
+    )
     aciklama = models.TextField(_("Açıklama"), blank=True, null=True)
 
     def __str__(self):
@@ -48,7 +60,7 @@ class FiberHatGuzergahTip(models.Model):
         verbose_name = _("Fiber Hat Güzergah Tipi")
         verbose_name_plural = _("Fiber Hat Güzergah Tipleri")
         ordering = ["ad"]
-        db_table = '"bilgiislem"."fiber_hat_guzergah_tipleri"'
+        db_table = '"bilgiislem"."fiber_guzergah_tipleri"'
 
 
 class FiberHat(models.Model):
@@ -64,13 +76,15 @@ class FiberHat(models.Model):
         FiberKabloTip,
         on_delete=models.SET_NULL,
         verbose_name=_("Kablo Tipi"),
+        to_field="deger",
         null=True,
         blank=True,
     )
     fiber_hat_guzergah_tipi = models.ForeignKey(
-        FiberHatGuzergahTip,
+        FiberGuzergahTip,
         on_delete=models.SET_NULL,
         verbose_name=_("Güzergah Tipi"),
+        to_field="deger",
         null=True,
         blank=True,
     )
@@ -117,6 +131,12 @@ class KameraMarkaModel(models.Model):
 
     marka = models.CharField(_("Marka"), max_length=100)
     model = models.CharField(_("Model"), max_length=100)
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=100,
+        unique=True,
+        help_text=_("Kamera marka/modeli için benzersiz bir değer giriniz."),
+    )
     aciklama = models.TextField(_("Açıklama"), blank=True, null=True)
 
     def __str__(self):
@@ -138,6 +158,12 @@ class KameraTip(models.Model):
     """
 
     ad = models.CharField(_("Kamera Tipi"), max_length=50, unique=True)
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Kamera tipi için benzersiz bir değer giriniz."),
+    )
     aciklama = models.TextField(_("Açıklama"), blank=True, null=True)
 
     def __str__(self):
@@ -158,6 +184,12 @@ class KameraCozunurluk(models.Model):
     """
 
     ad = models.CharField(_("Çözünürlük"), max_length=50, unique=True)
+    deger = models.SlugField(
+        _("Değer"),
+        max_length=50,
+        unique=True,
+        help_text=_("Kamera çözünürlüğü için benzersiz bir değer giriniz."),
+    )
     aciklama = models.TextField(_("Açıklama"), blank=True, null=True)
 
     def __str__(self):
@@ -192,6 +224,7 @@ class GuvenlikKamerasi(models.Model):
         KameraMarkaModel,
         on_delete=models.SET_NULL,
         verbose_name=_("Marka/Model"),
+        to_field="deger",
         null=True,
         blank=True,
     )
@@ -199,6 +232,7 @@ class GuvenlikKamerasi(models.Model):
         KameraTip,
         on_delete=models.SET_NULL,
         verbose_name=_("Kamera Tipi"),
+        to_field="deger",
         null=True,
         blank=True,
     )
@@ -206,6 +240,7 @@ class GuvenlikKamerasi(models.Model):
         KameraCozunurluk,
         on_delete=models.SET_NULL,
         verbose_name=_("Çözünürlük"),
+        to_field="deger",
         null=True,
         blank=True,
     )
